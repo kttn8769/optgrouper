@@ -223,9 +223,10 @@ def main(
 
     # Convert to a numpy record array
     orig_dataset_passthrough_array = orig_dataset_passthrough.to_records()
+    new_array = orig_dataset_passthrough.to_records().copy()
 
     if grouping_times is not None:
-        new_array = group_by_grouping_timestamps_spring8(orig_dataset_passthrough_array, grouping_times, verbose)
+        new_array = group_by_grouping_timestamps_spring8(new_array, grouping_times, verbose)
 
     if grouping_hours > 0:
         new_array = group_by_grouping_hours_spring8(new_array, grouping_hours, min_ptcls_per_group, verbose)
