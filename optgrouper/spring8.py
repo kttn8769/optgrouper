@@ -19,9 +19,9 @@ def parse_grouping_times_spring8(grouping_times: List[str], sort=True) -> List[d
     return grouping_timestamps
 
 
-def get_timestamps_spring8(dataset: np.recarray, sort_check=True) -> List[datetime.datetime]:
+def get_timestamps_spring8(dataset: np.recarray, sort_check=True, key='blob/path') -> List[datetime.datetime]:
     timestamps = []
-    for blobpath in dataset['blob/path']:
+    for blobpath in dataset[key]:
         basename = os.path.basename(blobpath)
         m = re.match(r'.*([0-9]{4})-([0-9]{2})-([0-9]{2})_([0-9]{2})_([0-9]{2})_([0-9]{2}).*', basename)
         assert m is not None, f'Timestamp extraction failed for file : {blobpath}'
